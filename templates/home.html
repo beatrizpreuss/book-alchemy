@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  </head>
+  <body>
+  <form action="/" method="POST">
+    <label for="search">Search Book:</label>
+  <input type="text" id="search" name="search" required><br><br>
+  </form>
+    {% for book in books %}
+    <div> <h3>{{ book.title }}</h3>
+      <li>Publication year: {{ book.publication_year }}</li>
+      <li>ISBN: {{ book.isbn }}</li>
+      <li>Author: {{ book.author.name }}</li><br>
+    {% if book.image_url %}
+      <img src="{{ book.image_url }}" alt="{{ book.title }}" style="height:150px;"><br>
+    {% endif %}
+      <form action="{{ url_for('delete', book_id=book.book_id) }}" method="POST">
+        <button type=submit>Delete Book</button>
+      </form>
+
+    </div>
+    {% endfor %}
+
+  </body>
+</html>
