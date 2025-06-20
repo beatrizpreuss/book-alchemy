@@ -194,7 +194,6 @@ def delete(book_id):
         authors_ids_without_books.delete(synchronize_session=False)
         db.session.commit()
 
-
         return redirect(url_for('home'))
     else:
         return f"No book found with ID {book_id}", 404
